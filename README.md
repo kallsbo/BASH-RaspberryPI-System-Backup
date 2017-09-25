@@ -31,3 +31,6 @@ I usally go for the default option 2 - nano. Then just add the line
 0 3 * * * /mnt/backup/system_backup.sh
 
 This will make the script take a full image backup every night at 3 am.
+
+## More info
+https://www.hackviking.com/single-board-computers/raspberry-pi/automated-raspberry-pi-backup-complete-image/
