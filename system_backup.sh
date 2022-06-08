@@ -27,11 +27,11 @@ exit
 fi
 
 # Check to see if we got command line args
-if [ ! -z $1 ]; then
+if [ -n "$1" ]; then
    backup_path=$1
 fi
 
-if [ ! -z $2 ]; then
+if [ -n "$2" ]; then
    retention_days=$2
 fi
 
@@ -39,10 +39,10 @@ fi
 touch /boot/forcefsck
 
 # Perform backup
-dd if=/dev/mmcblk0 of=$backup_path/$HOSTNAME.$(date +%Y%m%d).img bs=1M
+dd if=/dev/mmcblk0 of="$backup_path"/"$HOSTNAME"."$(date +%Y%m%d)".img bs=1M
 
 # Remove fsck trigger
 rm /boot/forcefsck
 
 # Delete old backups
-find $backup_path/$HOSTNAME.*.img -mtime +$retention_days -type f -delete 
+find "$backup_path"/"$HOSTNAME".*.img -mtime +"$retention_days" -type f -delete
